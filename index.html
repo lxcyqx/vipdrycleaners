@@ -108,6 +108,7 @@
         <span class="logo-text">Dry Cleaners & Expert Tailor</span>
       </div>
       <ul class="nav-links">
+        <li><a href="#gallery">Gallery</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#why-us">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -124,6 +125,46 @@
       <a href="#contact" class="btn btn-primary">Get in Touch</a>
     </div>
   </section>
+
+    <!-- Gallery -->
+    <section class="gallery section" id="gallery">
+      <div class="container">
+        <h2 class="section-title">Image Gallery</h2>
+        <p class="section-sub">A look inside VIP Dry Cleaners.</p>
+        <div class="gallery-grid">
+          <div class="gallery-item" onclick="openLightbox('images/image1.jpg')">
+            <img src="images/image1.jpg" alt="VIP Dry Cleaners work photo 1" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox('images/image2.jpg')">
+            <img src="images/image2.jpg" alt="VIP Dry Cleaners work photo 2" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox('images/image3.jpg')">
+            <img src="images/image3.jpg" alt="VIP Dry Cleaners work photo 3" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox('images/image4.jpg')">
+            <img src="images/image4.jpg" alt="VIP Dry Cleaners work photo 4" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox('images/image5.jpg')">
+            <img src="images/image5.jpg" alt="VIP Dry Cleaners work photo 5" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox('images/image6.jpg')">
+            <img src="images/image6.jpg" alt="VIP Dry Cleaners work photo 6" loading="lazy" />
+            <div class="gallery-overlay"><i data-lucide="expand"></i></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="Expanded photo" />
+    </div>  
 
   <!-- Services -->
   <section class="services section" id="services">
@@ -179,7 +220,7 @@
         <div class="feature">
           <span class="feature-number">01</span>
           <h3>Expert Craftsmanship</h3>
-          <p>Our tailors and cleaning specialists bring 25+ years of hands-on experience to every garment.</p>
+          <p>Our tailor and cleaning specialists bring 25+ years of hands-on experience to every garment.</p>
         </div>
         <div class="feature">
           <span class="feature-number">02</span>
@@ -353,5 +394,21 @@
   </footer>
 
   <script>lucide.createIcons();</script>
+  <script>
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
 </body>
 </html>
