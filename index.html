@@ -164,8 +164,10 @@
     <!-- Lightbox -->
     <div class="lightbox" id="lightbox" onclick="closeLightbox()">
       <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+      <button class="lightbox-arrow lightbox-prev" onclick="event.stopPropagation(); navigateLightbox(-1)" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
       <img class="lightbox-img" id="lightbox-img" src="" alt="Expanded photo" />
-    </div>  
+      <button class="lightbox-arrow lightbox-next" onclick="event.stopPropagation(); navigateLightbox(1)" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+    </div>
 
   <!-- Services -->
   <section class="services section" id="services">
@@ -396,19 +398,38 @@
 
   <script>lucide.createIcons();</script>
   <script>
+    const galleryImages = [
+      'images/image1.jpg',
+      'images/image2.jpg',
+      'images/image3.jpg',
+      'images/image4.jpg',
+      'images/image5.jpg',
+      'images/image6.jpg',
+    ];
+    let currentIndex = 0;
+
     function openLightbox(src) {
+      currentIndex = galleryImages.indexOf(src);
       const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
+      document.getElementById('lightbox-img').src = src;
       lb.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
+
+    function navigateLightbox(dir) {
+      currentIndex = (currentIndex + dir + galleryImages.length) % galleryImages.length;
+      document.getElementById('lightbox-img').src = galleryImages[currentIndex];
+    }
+
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('active');
       document.body.style.overflow = '';
     }
+
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') navigateLightbox(-1);
+      if (e.key === 'ArrowRight') navigateLightbox(1);
     });
   </script>
 </body>
