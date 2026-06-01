@@ -230,6 +230,10 @@ body {
   line-height: 1.7;
 }
 
+.section-sub a {
+  color: #2a5c45;
+}
+
 /* =====================
    Services
    ===================== */
